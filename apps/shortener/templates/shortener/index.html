@@ -1,0 +1,46 @@
+{% extends 'shortener/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    <h2>🔗 URL Shortener</h2>
+
+    <div class="section">
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col s12 m10">
+                    {{ form.full|as_crispy_field }}
+                </div>
+                <div class="col s12 m2">
+                    <button type="submit" class="waves-effect waves-light btn-large">
+                        Shrink
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="section">
+        <table class="responsive-table striped">
+            <thead>
+                <tr>
+                    <th>Full URL</th>
+                    <th>Short URL</th>
+                    <th>Clicks</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in links %}
+                    <tr>
+                        <td><a href="{{ link.full }}">{{ link.full }}</a></td>
+                        <td><a href="{{ link.short }}">{{ link.short }}</a></td>
+                        <td>{{ link.clicks }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

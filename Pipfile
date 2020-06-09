@@ -11,6 +11,8 @@ psycopg2 = "*"
 django-environ = "*"
 djangorestframework = "*"
 django-extensions = "*"
+django-crispy-forms = "*"
+crispy-forms-materialize = "*"
 
 [requires]
 python_version = "3.8"

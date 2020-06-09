@@ -67,7 +67,6 @@ DATABASES = {"default": DJANGO_DATABASE_URL}
 # -----------------------------------------------------------------------------
 INSTALLED_APPS = [
     # First party
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -76,10 +75,11 @@ INSTALLED_APPS = [
     "django.contrib.sites",
 
     # Third party
-    # ...
+    "crispy_forms",
+    "crispy_forms_materialize",
 
     # Local
-    # ...
+    "apps.shortener"
 ]
 
 
@@ -119,12 +119,7 @@ STATIC_ROOT = env("STATIC_ROOT", default=root_path("static"))
 
 MEDIA_URL = env("MEDIA_URL", default="/media/")
 MEDIA_ROOT = env("MEDIA_ROOT", default=root_path("media"))
-ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
-
-STATICFILES_DIRS = (
-    ("bundles", root_path("assets/bundles")),
-    ("img", root_path("assets/img")),
-)
+# ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 
 USE_S3_STATIC_STORAGE = env.bool("USE_S3_STATIC_STORAGE", default=False)
 
@@ -168,3 +163,9 @@ if USE_DJANGO_EXTENSIONS:
     INSTALLED_APPS += [
         "django_extensions",
     ]
+
+
+# -----------------------------------------------------------------------------
+# Crispy Forms
+# -----------------------------------------------------------------------------
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
