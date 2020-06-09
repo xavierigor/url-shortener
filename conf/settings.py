@@ -17,6 +17,7 @@ BASE_DIR = root_path()
 ROOT_URLCONF = "conf.urls"
 WSGI_APPLICATION = "conf.wsgi.application"
 
+
 # -----------------------------------------------------------------------------
 # Time & Language
 # -----------------------------------------------------------------------------
@@ -26,6 +27,7 @@ USE_I18N = env("USE_I18N", default=True)
 USE_L10N = env("USE_L10N", default=True)
 USE_TZ = env("USE_TZ", default=True)
 
+
 # -----------------------------------------------------------------------------
 # Emails
 # -----------------------------------------------------------------------------
@@ -33,6 +35,7 @@ DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="")
 EMAIL_BACKEND = env(
     "EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
 )
+
 
 # -----------------------------------------------------------------------------
 # Security and Users
@@ -51,11 +54,13 @@ AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 LOGIN_URL = env("LOGIN_URL", default="/login/")
 LOGIN_REDIRECT_URL = env("LOGIN_REDIRECT_URL", default="/")
 
+
 # -----------------------------------------------------------------------------
 # Databases
 # -----------------------------------------------------------------------------
 DJANGO_DATABASE_URL = env.db("DATABASE_URL")
 DATABASES = {"default": DJANGO_DATABASE_URL}
+
 
 # -----------------------------------------------------------------------------
 # Applications configuration
@@ -77,6 +82,7 @@ INSTALLED_APPS = [
     # ...
 ]
 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -86,6 +92,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 TEMPLATES = [
     {
@@ -98,11 +105,11 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "apps.misc.context_processors.django_settings",
             ],
         },
     },
 ]
+
 
 # -----------------------------------------------------------------------------
 # Static & Media Files
@@ -134,11 +141,13 @@ if USE_S3_STATIC_STORAGE:
     STATIC_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/"
     STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
+
 # -----------------------------------------------------------------------------
 # Celery
 # -----------------------------------------------------------------------------
 CELERY_BROKER_URL = env("CELERY_BROKER_URL", default="redis://cache")
 CELERY_TASK_ALWAYS_EAGER = env("CELERY_TASK_ALWAYS_EAGER", default=False)
+
 
 # -----------------------------------------------------------------------------
 # Django Debug Toolbar
@@ -149,6 +158,7 @@ CELERY_TASK_ALWAYS_EAGER = env("CELERY_TASK_ALWAYS_EAGER", default=False)
 #     INSTALLED_APPS += ["debug_toolbar"]
 #     INTERNAL_IPS = ["127.0.0.1"]
 #     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
 
 # -----------------------------------------------------------------------------
 # Django Extensions
