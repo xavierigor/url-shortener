@@ -1,9 +1,8 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView
 from django.views.generic.base import RedirectView
 
 from apps.shortener.forms import ShortUrlForm
