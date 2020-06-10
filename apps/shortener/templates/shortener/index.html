@@ -33,11 +33,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for link in links %}
+                {% for url in urls %}
                     <tr>
-                        <td><a href="{{ link.full }}">{{ link.full }}</a></td>
-                        <td><a href="{{ link.short }}">{{ link.short }}</a></td>
-                        <td>{{ link.clicks }}</td>
+                        <td>
+                            <a target="_blank" href="{{ url.full }}">{{ url.full|truncatechars:100 }}</a>
+                        </td>
+                        <td>
+                            <a target="_blank" href="{% url 'shortener:access_url' url.short %}">{{ url.short }}</a>
+                        </td>
+                        <td>{{ url.clicks }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
