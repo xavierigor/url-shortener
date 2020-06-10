@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from .utils import generate_random_string
 
 
@@ -23,3 +25,6 @@ class ShortUrl(models.Model):
 
     def __str__(self):
         return self.short
+
+    def get_absolute_url(self):
+        return reverse("shortener:access_url", kwargs={"short_url_code": self.short})

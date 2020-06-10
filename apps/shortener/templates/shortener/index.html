@@ -3,8 +3,6 @@
 
 
 {% block content %}
-    <h2>🔗 URL Shortener</h2>
-
     <div class="section">
         <form action="" method="post">
             {% csrf_token %}
@@ -23,6 +21,16 @@
     </div>
 
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="materialert {{ message.tags }}">
+                <div class="material-icons">check</div>
+                {{ message.message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
     <div class="section">
         <table class="responsive-table striped">
             <thead>
@@ -33,13 +41,17 @@
                 </tr>
             </thead>
             <tbody>
-                {% for url in urls %}
+                {% for url in object_list %}
                     <tr>
                         <td>
-                            <a target="_blank" href="{{ url.full }}">{{ url.full|truncatechars:100 }}</a>
+                            <a target="_blank" href="{{ url.full }}">
+                                {{ url.full|truncatechars:100 }}
+                            </a>
                         </td>
                         <td>
-                            <a target="_blank" href="{% url 'shortener:access_url' url.short %}">{{ url.short }}</a>
+                            <a target="_blank" href="{{ url.get_absolute_url }}">
+                                {{ url.short }}
+                            </a>
                         </td>
                         <td>{{ url.clicks }}</td>
                     </tr>
@@ -47,4 +59,6 @@
             </tbody>
         </table>
     </div>
+
+    {% include 'shortener/pagination.html' %}
 {% endblock %}

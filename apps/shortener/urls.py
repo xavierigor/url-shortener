@@ -11,6 +11,6 @@ app_name = 'shortener'
 urlpatterns = [
 
     path("", views.IndexView.as_view(), name="index"),
-    path("<short>", views.AccessUrlRedirectView.as_view(), name="access_url")
+    path("<short_url_code>", views.AccessUrlRedirectView.as_view(), name="access_url"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()
