@@ -26,7 +26,8 @@ class IndexView(CreateView):
 
     def get_success_url(self):
         messages.success(self.request,
-                         f"You can access your new URL by <a href='{self.object.get_absolute_url}'>clicking here</a>")
+                         f"You can access your new URL by "
+                         f"<a target='_blank' href='{self.object.get_absolute_url()}'>clicking here</a>")
         return super().get_success_url()
 
 
