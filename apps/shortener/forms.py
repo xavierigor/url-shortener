@@ -8,7 +8,7 @@ class ShortUrlForm(forms.ModelForm):
         model = ShortUrl
         fields = ["full"]
         widgets = {
-            "full": forms.URLInput(attrs={"placeholder": "Full URL", "autocomplete": "off"})
+            "full": forms.TextInput(attrs={"placeholder": "Full URL", "autocomplete": "off"})
         }
 
     def __init__(self, *args, **kwargs):

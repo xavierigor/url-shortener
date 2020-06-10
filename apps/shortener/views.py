@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -10,15 +11,18 @@ from apps.shortener.models import ShortUrl
 from conf.settings import DEFAULT_PAGINATION
 
 
-class IndexView(CreateView, ListView):
+class IndexView(CreateView):
     model = ShortUrl
     form_class = ShortUrlForm
     template_name = "shortener/index.html"
     success_url = reverse_lazy("shortener:index")
-    paginate_by = DEFAULT_PAGINATION
 
-    def get_queryset(self):
-        return ShortUrl.objects.order_by("-created_at")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        short_urls = ShortUrl.objects.order_by("-created_at")
+        paginator = Paginator(short_urls, DEFAULT_PAGINATION)
+        context['page_obj'] = paginator.get_page(self.request.GET.get("page"))
+        return context
 
     def get_success_url(self):
         messages.success(self.request,
