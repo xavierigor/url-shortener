@@ -60,5 +60,7 @@
         </table>
     </div>
 
-    {% include 'shortener/pagination.html' %}
+    {% if page_obj.paginator.num_pages > 1 %}
+        {% include 'shortener/pagination.html' %}
+    {% endif %}
 {% endblock %}
