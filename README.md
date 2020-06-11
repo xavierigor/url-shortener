@@ -1,6 +1,6 @@
 URL Shortener
 ==============
-<img alt="GitHub" src="https://img.shields.io/github/license/xavierigor/url-shortener?style=flat-square">
+<img alt="GitHub" src="https://img.shields.io/github/license/xavierigor/url-shortener">
 
 How it works
 ------------
