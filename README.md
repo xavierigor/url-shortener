@@ -17,6 +17,9 @@ Installing & Running
 You can install `url-shortener` cloning it from GitHub:
 
         $ git clone https://github.com/xavierigor/url-shortener
+        
+> Afterwards, you'll have to create a .env file in the root of the project, copy the contents of .env.example to it and modify `SECRET_KEY` and `DATABASE_URL` with your own database and secret key.
+
 
 Use `make setup` to activate virtualenv shell, install project's dependencies and run migrations:
 
